@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sierra Cash Forecast</title>
+<meta name="google" content="notranslate">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Industry Design Lanes · finance lane, committed to ONE look (ivory paper, navy ink, one hunter-green CTA, gold hairlines). No OS dark-mode flip: a finance site should look the same on every phone. Layout: left-aligned 1120px column; sections alternate ivory / tint; two navy statement sections (hero, mechanism). */
+:root{
+  color-scheme:light;
+  --ground:#F6F5F1; --surface:#FCFBF8; --ink:#16213A; --muted:#5F6470; --line:#E2DED5;
+  --navy:#0F2A4A; --navy-deep:#0B2039; --on-navy:#F2F0EA; --on-navy-muted:#C9D3E0;
+  --brand:#0F2A4A; --accent:#1F4D3A; --accent-ink:#F6F5F1; --second:#C39B4E; --tint:#E9EEF5; --radius:4px;
+  --display:"Libre Caslon Display",Georgia,"Times New Roman",serif;
+  --body:"Libre Franklin","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-block:0;padding-inline:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0;color:var(--navy)}
+h1{font-size:clamp(36px,5.2vw,62px)}
+h2{font-size:clamp(28px,3.6vw,42px)}
+h3{font-size:24px}
+p{text-wrap:pretty;margin:0}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--second)}
+.btn{display:inline-block;padding:13px 22px;border-radius:var(--radius);font-weight:600;text-decoration:none;font-size:16px;line-height:1.2;border:1px solid transparent}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:#17402F}
+.btn.ghost{color:var(--navy);border-color:var(--line);background:transparent}
+.navy .btn.ghost{color:var(--on-navy);border-color:rgba(242,240,234,.35)}
+.btn:focus-visible,.lang button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);background:var(--ground);border-bottom:1px solid var(--line);z-index:5}
+header.site .wrap{display:grid;grid-template-columns:1fr auto;grid-template-areas:"wm right" "nav nav";align-items:center;gap:10px 16px;padding-block:12px 10px}
+.wordmark{grid-area:wm}nav.main{grid-area:nav;justify-self:start;border-top:1px solid var(--line);padding-top:10px;width:100%}.right{grid-area:right;justify-self:end}
+.wordmark{font-family:var(--display);font-size:20px;color:var(--navy);text-decoration:none;line-height:1;display:flex;align-items:center;gap:12px}
+.wordmark img{height:34px;width:auto;display:block}
+.wordmark small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--second);margin-top:4px}
+nav.main{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;white-space:nowrap}
+nav.main a{color:var(--ink);text-decoration:none}
+nav.main a:hover{color:var(--accent)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.lang button{font:inherit;font-size:13px;font-weight:600;padding:6px 10px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--navy);color:var(--on-navy)}
+.right{display:flex;align-items:center;gap:12px;white-space:nowrap;min-width:0}
+.right .btn{min-width:11.5em;text-align:center}
+@media (max-width:700px){.right .btn{display:none}.wordmark{font-size:17px;gap:9px}.wordmark img{height:28px}.wordmark small{font-size:8.5px;letter-spacing:.1em}nav.main{gap:12px 14px;font-size:13px}}
+html,body{overflow-x:clip}
+.wrap{min-width:0}
+img,svg{max-width:100%}
+section{padding-block:72px}
+section.tint{background:var(--tint)}
+section.product{background:#0B1626;color:#E9EEF5}
+section.product h1,section.product h2{color:#F2F0EA}section.product .sec-head p{color:#93A3B8}section.product .eyebrow{color:#35D0A4}
+section.navy{background:var(--navy-deep);color:var(--on-navy)}
+section.navy h1,section.navy h2,section.navy h3{color:var(--on-navy)}
+section.navy p{color:var(--on-navy-muted)}
+section.navy .lede{color:var(--on-navy)}
+.hero{padding-block:80px 64px}
+.hero .lede{font-size:20px;max-width:58ch;margin-top:18px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px;padding-top:24px;border-top:1px solid var(--second)}
+@media (max-width:700px){.proof{grid-template-columns:1fr}}
+.proof .n{font-family:var(--display);font-size:36px;color:var(--on-navy);font-variant-numeric:tabular-nums;line-height:1}
+.proof .l{font-size:14px;color:var(--on-navy-muted);margin-top:6px;max-width:30ch}
+.sec-head{max-width:64ch;margin-bottom:36px}
+.sec-head p{margin-top:12px;color:var(--muted);font-size:18px}
+section.navy .sec-head p{color:var(--on-navy-muted)}
+.pains{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}
+@media (max-width:760px){.pains{grid-template-columns:1fr}}
+.pain{border-left:3px solid var(--second);padding-left:18px}
+.pain .q{font-family:var(--display);font-size:24px;line-height:1.25;color:var(--navy)}
+.pain .a{margin-top:8px;color:var(--muted);font-size:16px;max-width:48ch}
+.pains-close{margin-top:36px;font-size:19px;max-width:62ch;color:var(--ink)}
+.who{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px}
+@media (max-width:860px){.who{grid-template-columns:1fr}}
+.who .card{background:var(--surface);border-radius:var(--radius);padding:28px;min-width:0}
+.who .card.lead{background:var(--navy);color:var(--on-navy)}
+.who .card.lead h3{color:var(--on-navy)}
+.who .card.lead p{color:var(--on-navy-muted)}
+.who .card p{margin-top:10px;color:var(--muted);font-size:16px}
+.who .card .tagl{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--second);margin-bottom:10px}
+.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:8px}
+@media (max-width:860px){.chain{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.chain{grid-template-columns:1fr}}
+.link{background:rgba(242,240,234,.07);border-radius:var(--radius);padding:22px;min-width:0;border-top:2px solid var(--second)}
+.link .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--second)}
+.link h3{font-size:22px;margin-top:6px}
+.link p{margin-top:8px;font-size:15px}
+.link.last{background:var(--accent);border-top-color:var(--accent)}
+.link.last p,.link.last .k{color:var(--on-navy)}
+.chain-note{margin-top:28px;max-width:66ch;font-size:17px}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:640px){.tbl table.cmp{min-width:600px}.tbl::after{content:"Swipe to see all columns";display:block;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding:8px 2px 0}}
+table.cmp{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--surface)}
+table.cmp th,table.cmp td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+table.cmp th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--tint)}
+table.cmp td:last-child{color:var(--navy);font-weight:600}
+.ladder{display:grid;gap:0;border-top:1px solid var(--line)}
+.rung{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
+@media (max-width:700px){.rung{grid-template-columns:1fr;gap:8px}}
+.rung .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--second)}
+.rung h3{margin-top:4px}
+.rung p{margin-top:8px;color:var(--muted);max-width:66ch}
+.rung ul{margin:10px 0 0;padding-left:18px;color:var(--ink);font-size:16px}
+.rung li{margin-bottom:4px}
+.rung.hot{background:var(--surface);padding-inline:24px;margin-inline:-24px}
+@media (max-width:700px){.rung.hot{margin-inline:0;padding-inline:16px}}
+.start{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media (max-width:760px){.start{grid-template-columns:1fr}}
+.start .s{background:var(--surface);border-radius:var(--radius);padding:24px;min-width:0}
+.start .s .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.start .s h3{font-size:22px;margin-top:6px}
+.start .s p{margin-top:8px;color:var(--muted);font-size:15.5px}
+.start .s.paid{background:var(--navy);color:var(--on-navy)}
+.start .s.paid h3{color:var(--on-navy)} .start .s.paid p{color:var(--on-navy-muted)} .start .s.paid .k{color:var(--second)}
+.start .s .btn{margin-top:14px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+.step .num{font-family:var(--display);font-size:44px;color:var(--second);line-height:1}
+.step h3{margin-top:6px}
+.step p{margin-top:8px;color:var(--muted);font-size:16px}
+.about{display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:start}
+.about.noimg{grid-template-columns:1fr}
+.photo-card{position:relative;border-radius:var(--radius);overflow:hidden;max-width:380px;aspect-ratio:4/5;background:var(--navy);box-shadow:0 18px 40px rgba(15,42,74,.18)}
+@media (max-width:860px){.photo-card{max-width:420px}}
+.photo-card img.ph{width:100%;height:100%;object-fit:cover;display:block}
+.photo-card .cap-bar{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(180deg,rgba(11,32,57,0),rgba(11,32,57,.92) 55%);color:var(--on-navy);display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.photo-card .cap-bar b{display:block;font-family:var(--display);font-weight:400;font-size:19px;line-height:1.1}
+.photo-card .cap-bar span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--second);margin-top:4px}
+.photo-card .cap-bar img{height:26px;width:auto;flex:none;opacity:.95}
+@media (max-width:860px){.about{grid-template-columns:1fr}}
+.mono-block{position:relative;overflow:hidden;background:linear-gradient(160deg,#17395F 0%,#0F2A4A 55%,#0B2039 100%);color:var(--on-navy);border-radius:var(--radius);padding:32px;aspect-ratio:4/5;max-width:360px;display:flex;flex-direction:column;justify-content:space-between}
+.mono-block .sky{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;display:block;opacity:.22;pointer-events:none}
+.mono-block .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,177,95,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(212,177,95,.5) 1px,transparent 1px);background-size:40px 40px;opacity:.06;pointer-events:none}
+.mono-block .logo{position:relative;width:82%;height:auto;margin:18px auto 0;display:block;filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
+.mono-block .caps{position:relative;border-top:1px solid rgba(212,177,95,.35);padding-top:12px}
+.mono-block .init{font-family:var(--display);font-size:96px;line-height:1}
+.mono-block .cap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--second)}
+.mono-block .cap.sub{color:var(--on-navy-muted)}
+.creds{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.creds li{display:grid;grid-template-columns:120px 1fr;gap:12px;font-size:16px;border-top:1px solid var(--line);padding-top:10px}
+@media (max-width:480px){.creds li{grid-template-columns:1fr}}
+.creds li span:first-child{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--second);padding-top:3px}
+.about .bio p{margin-top:12px;max-width:62ch}
+.rare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+@media (max-width:760px){.rare{grid-template-columns:1fr}}
+.rare div{background:var(--tint);border-radius:var(--radius);padding:20px;min-width:0}
+.rare b{display:block;font-family:var(--display);font-weight:400;font-size:21px;color:var(--navy);margin-bottom:6px}
+.rare p{font-size:15px;color:var(--muted)}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+.contact .direct{display:grid;gap:14px;margin-top:16px}
+.contact .direct div{display:grid;gap:2px}
+.contact .direct span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--second)}
+.contact .direct b{font-weight:600;font-size:18px;user-select:all}
+form.cf{display:grid;gap:12px;background:var(--surface);padding:24px;border-radius:var(--radius)}
+form.cf label{display:grid;gap:4px;font-size:13px;font-weight:600}
+form.cf input,form.cf textarea{font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ground);color:var(--ink);width:100%}
+form.cf textarea{min-height:110px;resize:vertical}
+form.cf button{font:inherit;font-weight:600;padding:12px 18px;border:0;border-radius:var(--radius);background:var(--accent);color:var(--accent-ink);cursor:pointer;justify-self:start}
+form.cf .ok{display:none;font-weight:600;color:var(--accent)}
+footer.site{border-top:1px solid var(--line);padding-block:32px;font-size:13px;color:var(--muted)}
+footer.site .wrap{display:grid;gap:12px}
+footer.site p{max-width:80ch}
+.tool-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<style id="rw-page">body{background:#0B1626}header.site{background:#0B1626;border-bottom-color:rgba(233,238,245,.09)}header.site .wordmark{color:#F2F0EA}header.site .lang{border-color:rgba(233,238,245,.2)}header.site .lang button{color:#93A3B8}header.site .lang button[aria-pressed="true"]{background:#35D0A4;color:#07241B}footer.site{background:#0B1626;border-top-color:rgba(233,238,245,.09);color:#93A3B8}</style>
+<header class="site"><div class="wrap">
+  <a class="wordmark" href="https://sierragg.com"><img src="assets/logo-mark-96.png" alt=""><span>Sierra Global Groups<small data-en="Strategy · Growth · Legacy" data-es="Estrategia · Crecimiento · Legado">Strategy · Growth · Legacy</small></span></a>
+  <div class="right">
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang-btn="en" aria-pressed="true">EN</button><button type="button" data-lang-btn="es" aria-pressed="false">ES</button></div>
+  </div>
+</div></header>
+<main>
+<section class="hero product" style="padding-block:56px 32px"><div class="wrap">
+  <div class="eyebrow" data-en="Sierra Cash Forecast · free access · by Sierra Global Groups" data-es="Sierra Cash Forecast · acceso gratuito · por Sierra Global Groups">Sierra Cash Forecast · free access · by Sierra Global Groups</div>
+  <h1 style="margin-top:12px" data-en="Your 13-week cash forecast, in 60 seconds." data-es="Su pronóstico de caja a 13 semanas, en 60 segundos.">Your 13-week cash forecast, in 60 seconds.</h1>
+  <p class="lede" data-en="The same 13-week forecast a CFO builds in the first week of an engagement, run on six numbers from your bank statement and P&amp;L. No login. Nothing is stored unless you ask for the report. Example figures are loaded; replace them with yours." data-es="El mismo pronóstico a 13 semanas que un CFO construye en la primera semana de un acompañamiento, con seis cifras de su extracto bancario y estado de resultados. Sin registro. No guardamos nada a menos que pida el informe. Hay cifras de ejemplo cargadas; reemplácelas por las suyas.">The same 13-week forecast a CFO builds in the first week of an engagement, run on six numbers from your bank statement and P&amp;L. No login. Nothing is stored unless you ask for the report. Example figures are loaded; replace them with yours.</p>
+</div></section>
+<section class="product" style="padding-block:0 72px"><div class="wrap">
+  <!-- Cash Runway Map widget: markup + script. Shared by index.html (embedded) and runway.html (standalone). Strings carry data-en / data-es; dynamic strings live in W below. -->
+<style>
+/* Sierra Cash Forecast widget skin: dark fintech surface, one teal signal color, tabular mono numerics. Scoped to .rw so it sits inside the ivory site or stands alone. */
+.rw{--rw-bg:#0B1626;--rw-panel:#10203A;--rw-panel2:#0D1A30;--rw-line:rgba(233,238,245,.09);--rw-ink:#E9EEF5;--rw-muted:#93A3B8;--rw-teal:#35D0A4;--rw-teal-soft:rgba(53,208,164,.14);--rw-blue:#8FB3E0;--rw-good:#35D0A4;--rw-warn:#E0B45A;--rw-crit:#FF7A6B;--rw-crit-soft:rgba(255,122,107,.12);color:var(--rw-ink);font-family:var(--body)}
+.rw *{box-sizing:border-box}
+.rw-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;border:1px solid var(--rw-line);border-radius:10px 10px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);margin-bottom:0}
+.rw-brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.02em}
+.rw-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--rw-teal);box-shadow:0 0 0 4px var(--rw-teal-soft)}
+.rw-brand small{font-family:var(--mono);font-size:11px;color:var(--rw-muted);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.rw-chips{display:flex;gap:8px;flex-wrap:wrap}
+.rw-chip{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--rw-muted);border:1px solid var(--rw-line);border-radius:999px;padding:4px 10px}
+.rw-grid{display:grid;grid-template-columns:320px minmax(0,1fr);gap:0;border:1px solid var(--rw-line);border-top:0;border-radius:0 0 10px 10px;overflow:hidden;background:var(--rw-panel2)}
+@media (max-width:860px){.rw-grid{grid-template-columns:1fr}}
+.rw-panel{padding:22px 20px;background:var(--rw-panel2)}
+.rw-panel+.rw-panel{background:var(--rw-panel);border-left:1px solid var(--rw-line)}
+@media (max-width:860px){.rw-panel+.rw-panel{border-left:0;border-top:1px solid var(--rw-line)}}
+.rw-panel h3{font-family:var(--body);font-weight:600;font-size:15px;margin:0 0 4px;color:var(--rw-ink);letter-spacing:.01em}
+.rw-hint{font-size:13px;color:var(--rw-muted);margin:0 0 16px;line-height:1.45}
+.rw-field{display:grid;gap:4px;margin-bottom:12px}
+.rw-field label{font-size:12px;font-weight:600;color:var(--rw-muted);letter-spacing:.02em}
+.rw-field small{color:var(--rw-muted);font-size:11px;opacity:.8}
+.rw-field input{font-family:var(--mono);font-size:16px;font-variant-numeric:tabular-nums;padding:9px 10px;border:1px solid var(--rw-line);border-radius:6px;background:#0A1424;color:var(--rw-ink);width:100%}
+.rw-field input:focus{outline:2px solid var(--rw-teal);outline-offset:1px;border-color:transparent}
+.rw-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rw-chart{position:relative;border:1px solid var(--rw-line);border-radius:8px;padding:10px 8px 4px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+.rw-chart svg{width:100%;height:auto;display:block}
+.rw-tip{position:absolute;pointer-events:none;background:#E9EEF5;color:#0B1626;font-family:var(--mono);font-size:12px;padding:6px 8px;border-radius:4px;white-space:nowrap;transform:translate(-50%,-120%);opacity:0;transition:opacity .12s}
+.rw-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--rw-muted);margin-top:8px;font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.rw-legend span::before{content:"";display:inline-block;width:14px;height:2px;background:var(--rw-teal);margin-right:6px;vertical-align:middle;box-shadow:0 0 6px var(--rw-teal)}
+.rw-legend span.z::before{background:var(--rw-crit);height:8px;opacity:.35;box-shadow:none}
+.rw-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+@media (max-width:560px){.rw-kpis{grid-template-columns:1fr}}
+.rw-kpi{padding:12px 14px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--rw-line);min-width:0}
+.rw-kpi .l{font-family:var(--mono);font-size:11px;color:var(--rw-muted);text-transform:uppercase;letter-spacing:.08em}
+.rw-kpi .v{font-family:var(--mono);font-size:26px;font-weight:500;line-height:1.1;font-variant-numeric:tabular-nums;margin-top:6px;color:var(--rw-ink)}
+.rw-kpi .s{font-size:12px;color:var(--rw-muted);margin-top:4px}
+.rw-kpi.crit{border-color:rgba(255,122,107,.45);background:var(--rw-crit-soft)} .rw-kpi.crit .v{color:var(--rw-crit)}
+.rw-kpi.good .v{color:var(--rw-teal)}
+.rw-reveal{margin-top:16px;padding:16px 18px;background:var(--rw-teal-soft);border:1px solid rgba(53,208,164,.3);border-radius:8px}
+.rw-reveal h4{font-family:var(--body);font-weight:600;font-size:17px;margin:0 0 6px;color:var(--rw-ink)}
+.rw-reveal p{margin:0;max-width:70ch;color:#C9D3E0;font-size:14px;line-height:1.5}
+.rw-whatif{margin-top:18px}
+.rw-whatif h4{font-family:var(--body);font-weight:600;font-size:15px;margin:0 0 4px;color:var(--rw-ink)}
+.rw-toggles{display:grid;gap:8px;margin-top:10px}
+.rw-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 14px;border-radius:8px;cursor:pointer;background:rgba(255,255,255,.02);border:1px solid var(--rw-line)}
+.rw-toggle:has(input:checked){border-color:var(--rw-teal);background:var(--rw-teal-soft)}
+.rw-toggle input{width:18px;height:18px;accent-color:var(--rw-teal)}
+.rw-toggle .t{flex:1;min-width:0}
+.rw-toggle .t b{display:block;font-weight:600;font-size:14px}
+.rw-toggle .t small{color:var(--rw-muted);font-size:12px}
+.rw-toggle .d{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rw-capture{margin-top:20px;padding:20px;border-radius:8px;background:linear-gradient(135deg,#132A4A,#0F2340);border:1px solid rgba(143,179,224,.25);color:var(--rw-ink)}
+.rw-capture h4{font-family:var(--body);font-weight:600;font-size:18px;margin:0 0 6px}
+.rw-capture p{margin:0 0 12px;color:#C9D3E0;max-width:62ch;font-size:14px;line-height:1.5}
+.rw-capture form{display:flex;gap:10px;flex-wrap:wrap}
+.rw-capture input{font:inherit;font-size:16px;padding:10px 12px;border-radius:6px;border:1px solid var(--rw-line);min-width:0;flex:1 1 220px;background:#0A1424;color:var(--rw-ink)}
+.rw-capture button{font:inherit;font-weight:600;padding:10px 18px;border-radius:6px;border:0;background:var(--rw-teal);color:#07241B;cursor:pointer}
+.rw-capture button:focus-visible,.rw-toggle:focus-within{outline:2px solid var(--rw-teal);outline-offset:2px}
+.rw-capture .ok{display:none;font-weight:600;margin-top:10px;color:var(--rw-teal)}
+.rw-foot{margin-top:14px;font-size:11px;color:var(--rw-muted);max-width:80ch;line-height:1.45}
+</style>
+
+<div class="rw" id="rw">
+<div class="rw-topbar"><div class="rw-brand"><span class="dot" aria-hidden="true"></span>Sierra Cash Forecast<small data-en="13-week model" data-es="Modelo a 13 semanas">13-week model</small></div><div class="rw-chips"><span class="rw-chip" data-en="Runs in your browser" data-es="Corre en su navegador">Runs in your browser</span><span class="rw-chip" data-en="Nothing stored" data-es="No guarda datos">Nothing stored</span><span class="rw-chip">EN · ES</span></div></div>
+<div class="rw-grid">
+  <section class="rw-panel" aria-labelledby="rw-in-h">
+    <h3 id="rw-in-h" data-en="Your numbers" data-es="Sus cifras">Your numbers</h3>
+    <p class="rw-hint" data-en="Round numbers are fine. Nothing is stored unless you ask for the report." data-es="Cifras redondas son suficientes. No guardamos nada a menos que solicite el informe.">Round numbers are fine. Nothing is stored unless you ask for the report.</p>
+    <div class="rw-field"><label for="rw-cash" data-en="Cash in the bank today" data-es="Efectivo en el banco hoy">Cash in the bank today</label><input id="rw-cash" type="number" inputmode="decimal" value="85000" step="1000"><small data-en="Operating accounts only" data-es="Solo cuentas operativas">Operating accounts only</small></div>
+    <div class="rw-field"><label for="rw-rev" data-en="Monthly revenue" data-es="Ventas mensuales">Monthly revenue</label><input id="rw-rev" type="number" inputmode="decimal" value="220000" step="1000"><small data-en="Last month, invoiced or sold" data-es="Del último mes, facturadas o vendidas">Last month, invoiced or sold</small></div>
+    <div class="rw-row2">
+      <div class="rw-field"><label for="rw-gm" data-en="Gross margin %" data-es="Margen bruto %">Gross margin %</label><input id="rw-gm" type="number" inputmode="decimal" value="42" step="1" min="1" max="99"><small data-en="After cost of goods or delivery" data-es="Después del costo de ventas">After cost of goods or delivery</small></div>
+      <div class="rw-field"><label for="rw-growth" data-en="Growth % per month" data-es="Crecimiento % mensual">Growth % per month</label><input id="rw-growth" type="number" inputmode="decimal" value="8" step="1" min="-50" max="100"><small data-en="Use 0 if flat" data-es="Use 0 si es estable">Use 0 if flat</small></div>
+    </div>
+    <div class="rw-field"><label for="rw-fixed" data-en="Fixed costs per month" data-es="Costos fijos mensuales">Fixed costs per month</label><input id="rw-fixed" type="number" inputmode="decimal" value="78000" step="1000"><small data-en="Payroll, rent, software, insurance, debt payments" data-es="Nómina, arriendo, software, seguros, cuotas de deuda">Payroll, rent, software, insurance, debt payments</small></div>
+    <div class="rw-field"><label for="rw-dso" data-en="Days to get paid" data-es="Días para cobrar">Days to get paid</label><input id="rw-dso" type="number" inputmode="decimal" value="52" step="1" min="0" max="180"><small data-en="Average from invoice to cash. Retail or card-paid: 1" data-es="Promedio de factura a efectivo. Venta de contado o tarjeta: 1">Average from invoice to cash. Retail or card-paid: 1</small></div>
+    <div class="rw-row2">
+      <div class="rw-field"><label for="rw-oneoff" data-en="One-off payment coming" data-es="Pago único próximo">One-off payment coming</label><input id="rw-oneoff" type="number" inputmode="decimal" value="40000" step="1000" min="0"><small data-en="Taxes, equipment, balloon payment" data-es="Impuestos, equipos, cuota extraordinaria">Taxes, equipment, balloon payment</small></div>
+      <div class="rw-field"><label for="rw-oneweek" data-en="In week" data-es="En la semana">In week</label><input id="rw-oneweek" type="number" inputmode="numeric" value="6" step="1" min="1" max="13"><small data-en="1 to 13" data-es="1 a 13">1 to 13</small></div>
+    </div>
+  </section>
+
+  <section class="rw-panel" aria-labelledby="rw-pic-h">
+    <h3 id="rw-pic-h" data-en="Your 13-week cash picture" data-es="Su caja en las próximas 13 semanas">Your 13-week cash picture</h3>
+    <p class="rw-hint" data-en="Projected bank balance at the end of each week. The shaded band is under two weeks of fixed costs." data-es="Saldo proyectado al cierre de cada semana. La franja sombreada está por debajo de dos semanas de costos fijos.">Projected bank balance at the end of each week. The shaded band is under two weeks of fixed costs.</p>
+    <div class="rw-chart">
+      <svg id="rw-chart" viewBox="0 0 720 320" role="img" aria-label="Projected cash balance over 13 weeks"></svg>
+      <div class="rw-tip" id="rw-tip"></div>
+    </div>
+    <div class="rw-legend"><span data-en="Projected cash" data-es="Caja proyectada">Projected cash</span><span class="z" data-en="Danger zone" data-es="Zona de riesgo">Danger zone</span></div>
+    <div class="rw-kpis">
+      <div class="rw-kpi" id="rw-k-low"><div class="l" data-en="Lowest point" data-es="Punto más bajo">Lowest point</div><div class="v" id="rw-low-v">–</div><div class="s" id="rw-low-s">–</div></div>
+      <div class="rw-kpi" id="rw-k-end"><div class="l" data-en="Cash in week 13" data-es="Caja en la semana 13">Cash in week 13</div><div class="v" id="rw-end-v">–</div><div class="s" id="rw-end-s">–</div></div>
+      <div class="rw-kpi" id="rw-k-be"><div class="l" data-en="Breakeven revenue" data-es="Ventas de equilibrio">Breakeven revenue</div><div class="v" id="rw-be-v">–</div><div class="s" id="rw-be-s">–</div></div>
+    </div>
+    <div class="rw-reveal"><h4 id="rw-rev-h">–</h4><p id="rw-rev-p">–</p></div>
+    <div class="rw-whatif">
+      <h4 data-en="What moves the line" data-es="Qué mueve la línea">What moves the line</h4>
+      <p class="rw-hint" data-en="Three levers a CFO pulls first. Toggle each to see the cash difference in week 13." data-es="Tres palancas que un CFO mueve primero. Active cada una y vea la diferencia en la semana 13.">Three levers a CFO pulls first. Toggle each to see the cash difference in week 13.</p>
+      <div class="rw-toggles">
+        <label class="rw-toggle"><input type="checkbox" id="rw-w-price"><span class="t"><b data-en="Raise prices 6%" data-es="Subir precios 6%">Raise prices 6%</b><small data-en="Most owners underprice. 6% is rarely noticed by customers." data-es="La mayoría cobra menos de lo que debería. Un 6% rara vez se nota.">Most owners underprice. 6% is rarely noticed by customers.</small></span><span class="d" id="rw-d-price">–</span></label>
+        <label class="rw-toggle"><input type="checkbox" id="rw-w-dso"><span class="t"><b data-en="Get paid 10 days faster" data-es="Cobrar 10 días más rápido">Get paid 10 days faster</b><small data-en="Deposits, shorter terms, automated reminders." data-es="Anticipos, plazos más cortos, recordatorios automáticos.">Deposits, shorter terms, automated reminders.</small></span><span class="d" id="rw-d-dso">–</span></label>
+        <label class="rw-toggle"><input type="checkbox" id="rw-w-fixed"><span class="t"><b data-en="Trim fixed costs 5%" data-es="Recortar costos fijos 5%">Trim fixed costs 5%</b><small data-en="Subscriptions, duplicate tools, renegotiated rent." data-es="Suscripciones, herramientas duplicadas, arriendo renegociado.">Subscriptions, duplicate tools, renegotiated rent.</small></span><span class="d" id="rw-d-fixed">–</span></label>
+      </div>
+    </div>
+    <div class="rw-capture">
+      <h4 data-en="Want this as a one-page report with the full 13-week table?" data-es="¿Quiere este análisis en un informe de una página con la tabla completa de 13 semanas?">Want this as a one-page report with the full 13-week table?</h4>
+      <p data-en="We will send the PDF plus the three levers ranked by what they are worth to you in dollars. If you want to walk the numbers with Natalia, there is a 20-minute slot for that on the next page." data-es="Le enviamos el PDF con las tres palancas ordenadas por lo que valen para usted en dólares. Si quiere revisar las cifras con Natalia, hay un espacio de 20 minutos en la siguiente página.">We will send the PDF plus the three levers ranked by what they are worth to you in dollars. If you want to walk the numbers with Natalia, there is a 20-minute slot for that on the next page.</p>
+      <form id="rw-form"><input id="rw-email" type="email" data-en-ph="you@company.com" data-es-ph="usted@empresa.com" placeholder="you@company.com" required aria-label="Email"><button type="submit" data-en="Email me the full forecast" data-es="Enviarme el pronóstico completo">Email me the full forecast</button></form>
+      <div class="ok" id="rw-ok" data-en="Got it. Check your inbox in the next few minutes." data-es="Recibido. Revise su correo en los próximos minutos.">Got it. Check your inbox in the next few minutes.</div>
+    </div>
+    <p class="rw-foot" data-en="Illustrative projection from the figures you entered. It is not accounting, tax or investment advice and does not replace a forecast built from your actual ledgers. Growth is applied monthly; cost of goods is paid in the week of sale; receivables arrive after the collection delay you entered." data-es="Proyección ilustrativa a partir de las cifras que ingresó. No constituye asesoría contable, tributaria ni de inversión y no reemplaza un pronóstico construido con sus libros reales. El crecimiento se aplica mensualmente; el costo de ventas se paga en la semana de la venta; la cartera ingresa después del plazo de cobro que indicó.">Illustrative projection from the figures you entered. It is not accounting, tax or investment advice and does not replace a forecast built from your actual ledgers.</p>
+  </section>
+</div>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const WPM=52/12;
+  const W={
+    en:{runsOut:w=>'Cash runs out in week '+w, today:'That is today. Cash climbs from here.', week:(w,c)=>'Week '+w+' · '+c+' weeks of fixed costs', vsToday:'vs today', above:p=>'You are '+p+'% above it', below:p=>'You are '+p+'% below it', perMonth:'per month to cover fixed costs',
+      h1:'Profitable on paper, draining in the bank.', p1:(pp,dr,d)=>'Your P&L says you make about '+pp+' a month. Your bank balance is set to fall '+dr+' over the next 13 weeks. The gap is timing: you pay for growth and payroll now and get paid '+d+' days later. This is the most common reason profitable companies run out of cash.',
+      h2:'The model is losing money before timing even matters.', p2:(r,s,be)=>'At '+r+' a month you are '+s+' short of covering fixed costs. Breakeven is '+be+' a month. The levers below help, but pricing and cost structure come first.',
+      h3:'Cash is building. The question is what to do with it.', p3:(g,w)=>'You add about '+g+' over 13 weeks on these numbers. Watch the lowest point in week '+w+'. If a one-off payment lands there, that is where the squeeze shows up.',
+      wk13:'in wk 13', now:'now', wk:'wk ', out:' out', tipToday:'Today', tipWeek:'Week '},
+    es:{runsOut:w=>'La caja se agota en la semana '+w, today:'Es hoy. La caja sube desde aquí.', week:(w,c)=>'Semana '+w+' · '+c+' semanas de costos fijos', vsToday:'frente a hoy', above:p=>'Está '+p+'% por encima', below:p=>'Está '+p+'% por debajo', perMonth:'mensuales para cubrir costos fijos',
+      h1:'Rentable en el papel, drenando en el banco.', p1:(pp,dr,d)=>'Su estado de resultados dice que gana cerca de '+pp+' al mes. Su saldo bancario va a caer '+dr+' en las próximas 13 semanas. La diferencia es de tiempos: paga el crecimiento y la nómina hoy y cobra '+d+' días después. Es la razón más común por la que empresas rentables se quedan sin caja.',
+      h2:'El modelo pierde dinero antes de que importen los tiempos.', p2:(r,s,be)=>'Con '+r+' al mes le faltan '+s+' para cubrir los costos fijos. El punto de equilibrio es '+be+' al mes. Las palancas ayudan, pero precios y estructura de costos van primero.',
+      h3:'La caja crece. La pregunta es qué hacer con ella.', p3:(g,w)=>'Acumula cerca de '+g+' en 13 semanas con estas cifras. Vigile el punto más bajo en la semana '+w+'. Si un pago único cae ahí, ahí aparece el apretón.',
+      wk13:'en sem. 13', now:'hoy', wk:'sem ', out:' sale', tipToday:'Hoy', tipWeek:'Semana '}
+  };
+  const lang=()=>(document.documentElement.lang||'en').startsWith('es')?'es':'en';
+  const T=()=>W[lang()];
+  const fmt=n=>{const a=Math.abs(n);const s=n<0?'-':'';if(a>=1e6)return s+'$'+(a/1e6).toFixed(2)+'M';if(a>=1e3)return s+'$'+Math.round(a/1e3)+'K';return s+'$'+Math.round(a)};
+  const fmtFull=n=>(n<0?'-':'')+'$'+Math.abs(Math.round(n)).toLocaleString('en-US');
+  function read(){const v=id=>parseFloat($(id).value)||0;return{cash:v('rw-cash'),rev:v('rw-rev'),gm:Math.min(99,Math.max(1,v('rw-gm')))/100,growth:v('rw-growth')/100,fixed:v('rw-fixed'),dso:Math.max(0,v('rw-dso')),oneoff:v('rw-oneoff'),oneweek:Math.min(13,Math.max(1,Math.round(v('rw-oneweek'))||1))}}
+  function simulate(p,opt){opt=opt||{};let rev=p.rev,gm=p.gm,fixed=p.fixed,dso=p.dso;if(opt.price){gm=1-(1-gm)/1.06;rev*=1.06}if(opt.dso)dso=Math.max(0,dso-10);if(opt.fixed)fixed*=0.95;const lag=dso/7;const wr=w=>rev/WPM*Math.pow(1+p.growth,w/WPM);const out=[p.cash];let c=p.cash;for(let w=1;w<=13;w++){c+=wr(w-lag)-wr(w)*(1-gm)-fixed/WPM;if(w===p.oneweek)c-=p.oneoff;out.push(c)}return out}
+  function draw(series,p){
+    const t=T();const svg=$('rw-chart');const Wd=720,H=320,L=64,R=16,Tp=18,B=40;
+    const minV=Math.min(0,...series),maxV=Math.max(...series);const pad=(maxV-minV)*0.12||1000;const y0=minV-pad,y1=maxV+pad;
+    const x=i=>L+(Wd-L-R)*i/13,y=v=>Tp+(H-Tp-B)*(1-(v-y0)/(y1-y0));
+    const twoWeeks=p.fixed/WPM*2;let s='<defs><linearGradient id="rwfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#35D0A4" stop-opacity=".28"/><stop offset="1" stop-color="#35D0A4" stop-opacity="0"/></linearGradient><filter id="rwglow" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+    for(let i=0;i<=5;i++){const v=y0+(y1-y0)*i/5;s+='<line x1="'+L+'" x2="'+(Wd-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="rgba(233,238,245,.08)" stroke-width="1"/><text x="'+(L-8)+'" y="'+(y(v)+4)+'" text-anchor="end" font-size="11" font-family="var(--mono)" fill="#93A3B8">'+fmt(v)+'</text>'}
+    const bandTop=Math.min(Math.max(y(twoWeeks),Tp),H-B);s+='<rect x="'+L+'" y="'+bandTop+'" width="'+(Wd-L-R)+'" height="'+Math.max(0,H-B-bandTop)+'" fill="var(--rw-crit)" opacity="0.10"/>';
+    if(y0<0)s+='<line x1="'+L+'" x2="'+(Wd-R)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="var(--rw-crit)" stroke-width="1" stroke-dasharray="4 4"/>';
+    for(let i=0;i<=13;i++)s+='<text x="'+x(i)+'" y="'+(H-B+18)+'" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="#93A3B8">'+(i===0?t.now:t.wk+i)+'</text>';
+    const pts=series.map((v,i)=>x(i)+','+y(v)).join(' ');
+    s+='<polygon points="'+x(0)+','+y(y0)+' '+pts+' '+x(13)+','+y(y0)+'" fill="url(#rwfill)"/><polyline points="'+pts+'" fill="none" stroke="#35D0A4" stroke-width="2.5" filter="url(#rwglow)" stroke-linejoin="round" stroke-linecap="round"/>';
+    if(p.oneoff>0)s+='<line x1="'+x(p.oneweek)+'" x2="'+x(p.oneweek)+'" y1="'+Tp+'" y2="'+(H-B)+'" stroke="var(--rw-warn)" stroke-width="1" stroke-dasharray="3 3"/><text x="'+(x(p.oneweek)+4)+'" y="'+(Tp+10)+'" font-size="11" font-family="var(--mono)" fill="var(--rw-warn)">'+fmt(p.oneoff)+t.out+'</text>';
+    let li=0;series.forEach((v,i)=>{if(v<series[li])li=i});
+    s+='<circle cx="'+x(li)+'" cy="'+y(series[li])+'" r="5" fill="var(--rw-crit)" stroke="#0B1626" stroke-width="2"/><circle cx="'+x(13)+'" cy="'+y(series[13])+'" r="5" fill="#35D0A4" stroke="#0B1626" stroke-width="2"/><text x="'+(x(13)-8)+'" y="'+(y(series[13])-10)+'" text-anchor="end" font-size="12" font-weight="600" font-family="var(--mono)" fill="#E9EEF5">'+fmt(series[13])+'</text>';
+    for(let i=0;i<=13;i++)s+='<rect class="hit" data-i="'+i+'" x="'+(x(i)-(Wd-L-R)/26)+'" y="'+Tp+'" width="'+((Wd-L-R)/13)+'" height="'+(H-Tp-B)+'" fill="transparent"/>';
+    svg.innerHTML=s;const tip=$('rw-tip');
+    svg.querySelectorAll('.hit').forEach(h=>{h.addEventListener('mousemove',()=>{const i=+h.dataset.i;const r=svg.getBoundingClientRect();tip.textContent=(i===0?t.tipToday:t.tipWeek+i)+': '+fmtFull(series[i]);tip.style.left=(x(i)*r.width/Wd)+'px';tip.style.top=(y(series[i])*r.height/H)+'px';tip.style.opacity=1});h.addEventListener('mouseleave',()=>tip.style.opacity=0)});
+    return li;
+  }
+  function update(){
+    const t=T();const p=read();const opt={price:$('rw-w-price').checked,dso:$('rw-w-dso').checked,fixed:$('rw-w-fixed').checked};
+    const base=simulate(p),cur=simulate(p,opt);const li=draw(cur,p);const wf=p.fixed/WPM;const low=cur[li],end=cur[13];
+    $('rw-k-low').className='rw-kpi'+(low<wf*2?' crit':'');$('rw-low-v').textContent=fmt(low);
+    $('rw-low-s').textContent=low<0?t.runsOut(li):(li===0?t.today:t.week(li,(low/wf).toFixed(1)));
+    $('rw-k-end').className='rw-kpi'+(end>=p.cash?' good':'');$('rw-end-v').textContent=fmt(end);const diff=end-p.cash;$('rw-end-s').textContent=(diff>=0?'+':'')+fmt(diff)+' '+t.vsToday;
+    const be=p.fixed/p.gm;$('rw-be-v').textContent=fmt(be);$('rw-be-s').textContent=p.rev>=be?t.above(Math.round((p.rev/be-1)*100)):t.below(Math.round((1-p.rev/be)*100));
+    const pp=p.rev*p.gm-p.fixed,ch=base[13]-p.cash,h=$('rw-rev-h'),pe=$('rw-rev-p');
+    if(pp>0&&ch<0){h.textContent=t.h1;pe.textContent=t.p1(fmtFull(pp),fmtFull(-ch),Math.round(p.dso))}else if(pp<=0){h.textContent=t.h2;pe.textContent=t.p2(fmtFull(p.rev),fmtFull(-pp),fmtFull(be))}else{h.textContent=t.h3;pe.textContent=t.p3(fmtFull(ch),li)}
+    const d=o=>simulate(p,o)[13]-base[13];const show=(id,v)=>{const e=$(id);e.textContent=(v>=0?'+':'')+fmt(v)+' '+t.wk13;e.style.color=v>=0?'var(--rw-good)':'var(--rw-crit)'};
+    show('rw-d-price',d({price:true}));show('rw-d-dso',d({dso:true}));show('rw-d-fixed',d({fixed:true}));
+  }
+  ['rw-cash','rw-rev','rw-gm','rw-growth','rw-fixed','rw-dso','rw-oneoff','rw-oneweek','rw-w-price','rw-w-dso','rw-w-fixed'].forEach(id=>$(id).addEventListener('input',update));
+  $('rw-form').addEventListener('submit',e=>{e.preventDefault();$('rw-ok').style.display='block';e.target.querySelector('button').disabled=true;});
+  window.SGG_widgetUpdate=update;
+  update();
+})();
+</script>
+
+</div></section>
+</main>
+<footer class="site"><div class="wrap">
+  <p><b>Sierra Global Groups LLC</b> · Tampa, Florida · (813) 703-3969 · contact@sierragg.com</p>
+  <p data-en="Sierra Global Groups is a bilingual fractional CFO and strategic finance firm in Tampa, Florida, serving owner-led companies and Latin American companies entering the United States." data-es="Sierra Global Groups es una firma bilingüe de CFO externa y finanzas estratégicas en Tampa, Florida, al servicio de empresas dirigidas por sus dueños y de empresas latinoamericanas que llegan a Estados Unidos.">Sierra Global Groups is a bilingual fractional CFO and strategic finance firm in Tampa, Florida, serving owner-led companies and Latin American companies entering the United States.</p>
+  <p>© 2026 Sierra Global Groups LLC</p>
+</div></footer>
+<script>
+(function(){
+  const root=document.documentElement;
+  function get(){const h=location.hash.replace('#','');if(h==='es'||h==='en')return h;try{const s=localStorage.getItem('sgg-lang');if(s==='es'||s==='en')return s}catch(e){}return (navigator.language||'en').toLowerCase().startsWith('es')?'es':'en'}
+  function apply(l){root.lang=l;root.setAttribute('translate','no');root.classList.add('notranslate');
+    document.querySelectorAll('[data-en]').forEach(el=>{const v=el.dataset[l];if(v!=null)el.innerHTML=v});
+    document.querySelectorAll('[data-en-ph]').forEach(el=>{el.placeholder=el.dataset[l+'Ph']||''});
+    document.querySelectorAll('[data-lang-btn]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.langBtn===l)));
+    try{localStorage.setItem('sgg-lang',l)}catch(e){}
+    if(window.SGG_widgetUpdate)window.SGG_widgetUpdate();
+  }
+  window.SGG_setLang=apply;
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-lang-btn]');if(b){apply(b.dataset.langBtn)}});
+  document.addEventListener('DOMContentLoaded',()=>apply(get()));
+  document.querySelectorAll('form.cf').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();f.querySelector('.ok').style.display='block';f.querySelector('button').disabled=true}));
+})();
+</script>
+
+
+</body>
+</html>
